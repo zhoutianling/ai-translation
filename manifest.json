@@ -3,7 +3,7 @@
   "name": "LingoTrans - AI 中英文本翻译",
   "short_name": "LingoTrans",
   "description": "使用你自己的 OpenAI 兼容 API，在侧栏中自动进行中英文本互译。",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "icons": {
     "16": "assets/icon-16.png",
     "32": "assets/icon-32.png",

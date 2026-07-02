@@ -52,23 +52,44 @@ function New-Canvas([int]$W, [int]$H) {
 
 function Draw-Logo($G, [float]$X, [float]$Y, [float]$S) {
   $Rect = New-Object System.Drawing.Rectangle ([int]$X), ([int]$Y), ([int]$S), ([int]$S)
-  $Grad = New-Object System.Drawing.Drawing2D.LinearGradientBrush $Rect, ([System.Drawing.Color]::FromArgb(111, 226, 219)), ([System.Drawing.Color]::FromArgb(111, 162, 255)), 45
-  $WhiteBrush = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(250, 255, 255))
-  $BlueBrush = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(24, 93, 171))
-  Fill-Round $G $Grad $X $Y $S $S ([Math]::Max(8, $S * 0.22))
-  Fill-Round $G $WhiteBrush ($X + $S * 0.20) ($Y + $S * 0.23) ($S * 0.60) ($S * 0.43) ($S * 0.09)
+  $Bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush $Rect, ([System.Drawing.Color]::FromArgb(223, 252, 255)), ([System.Drawing.Color]::FromArgb(239, 253, 244)), 45
+  $BlueBubble = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(74, 163, 243))
+  $WhiteBrush = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(255, 255, 255))
+  $TextBlue = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(47, 148, 218))
+  $OutlinePen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(143, 208, 245)), ([Math]::Max(1.0, $S * 0.025))
+  $Shadow = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(32, 46, 133, 171))
+  Fill-Round $G $Bg $X $Y $S $S ([Math]::Max(8, $S * 0.18))
+
+  Fill-Round $G $Shadow ($X + $S * 0.10) ($Y + $S * 0.18) ($S * 0.58) ($S * 0.47) ($S * 0.18)
+  Fill-Round $G $BlueBubble ($X + $S * 0.08) ($Y + $S * 0.13) ($S * 0.58) ($S * 0.47) ($S * 0.18)
   $Tail = @(
-    [System.Drawing.PointF]::new([float]($X + $S * 0.44), [float]($Y + $S * 0.66)),
-    [System.Drawing.PointF]::new([float]($X + $S * 0.58), [float]($Y + $S * 0.66)),
-    [System.Drawing.PointF]::new([float]($X + $S * 0.44), [float]($Y + $S * 0.80))
+    [System.Drawing.PointF]::new([float]($X + $S * 0.20), [float]($Y + $S * 0.58)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.32), [float]($Y + $S * 0.58)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.19), [float]($Y + $S * 0.73))
   )
-  $G.FillPolygon($WhiteBrush, $Tail)
-  $LogoFont = New-Object System.Drawing.Font 'Segoe UI', ([float]($S * 0.34)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
+  $G.FillPolygon($BlueBubble, $Tail)
+  $AFont = New-Object System.Drawing.Font 'Segoe UI', ([float]($S * 0.38)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
   $Format = New-Object System.Drawing.StringFormat
   $Format.Alignment = [System.Drawing.StringAlignment]::Center
   $Format.LineAlignment = [System.Drawing.StringAlignment]::Center
-  $G.DrawString('L', $LogoFont, $BlueBrush, (New-Object System.Drawing.RectangleF ($X + $S * 0.20), ($Y + $S * 0.23), ($S * 0.60), ($S * 0.43)), $Format)
-  $Grad.Dispose(); $WhiteBrush.Dispose(); $BlueBrush.Dispose(); $LogoFont.Dispose(); $Format.Dispose()
+  $G.DrawString('A', $AFont, $WhiteBrush, (New-Object System.Drawing.RectangleF ($X + $S * 0.12), ($Y + $S * 0.11), ($S * 0.43), ($S * 0.40)), $Format)
+
+  $CircleX = $X + $S * 0.42
+  $CircleY = $Y + $S * 0.43
+  $CircleS = $S * 0.48
+  $G.FillEllipse($Shadow, $CircleX + $S * 0.03, $CircleY + $S * 0.04, $CircleS, $CircleS)
+  $G.FillEllipse($WhiteBrush, $CircleX, $CircleY, $CircleS, $CircleS)
+  $G.DrawEllipse($OutlinePen, $CircleX, $CircleY, $CircleS, $CircleS)
+  $Tail2 = @(
+    [System.Drawing.PointF]::new([float]($X + $S * 0.73), [float]($Y + $S * 0.86)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.82), [float]($Y + $S * 0.91)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.78), [float]($Y + $S * 0.80))
+  )
+  $G.FillPolygon($WhiteBrush, $Tail2)
+  $G.DrawLines($OutlinePen, $Tail2)
+  $ZhFont = New-Object System.Drawing.Font 'Microsoft YaHei UI', ([float]($S * 0.25)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
+  $G.DrawString(([string][char]0x6587), $ZhFont, $TextBlue, (New-Object System.Drawing.RectangleF $CircleX, ($CircleY + $S * 0.06), $CircleS, ($CircleS * 0.72)), $Format)
+  $Bg.Dispose(); $BlueBubble.Dispose(); $WhiteBrush.Dispose(); $TextBlue.Dispose(); $OutlinePen.Dispose(); $Shadow.Dispose(); $AFont.Dispose(); $ZhFont.Dispose(); $Format.Dispose()
 }
 
 $Dark = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(22, 42, 72))
@@ -179,6 +200,26 @@ $Arrow.EndCap = [System.Drawing.Drawing2D.LineCap]::ArrowAnchor
 $G.DrawLine($Arrow, 985, 240, 1065, 240)
 $Bmp.Save((Join-Path $OutDir 'large-promo-1400x560.png'), [System.Drawing.Imaging.ImageFormat]::Png)
 $Arrow.Dispose(); $G.Dispose(); $Bmp.Dispose()
+
+# Small promotional tile
+$Canvas = New-Canvas 440 280; $Bmp = $Canvas[0]; $G = $Canvas[1]
+Draw-Logo $G 34 40 90
+$SmallTitle = New-Object System.Drawing.Font 'Segoe UI', 34, ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
+$SmallH = New-Object System.Drawing.Font 'Segoe UI', 18, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
+$SmallBody = New-Object System.Drawing.Font 'Segoe UI', 15, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
+Write-Text $G 'LingoTrans' $SmallTitle $Dark 34 140 240 44
+Write-Text $G 'Chinese-English AI Translator' $SmallH $Muted 36 184 310 28
+Write-Text $G 'Use your own OpenAI-compatible API' $SmallBody $Muted 36 218 340 24
+Fill-Round $G $Shadow 246 58 150 112 18
+Fill-Round $G $White 240 52 150 112 18
+Write-Text $G 'Hello' $Button $Dark 264 76 95 28
+Write-Text $G 'Translate text' $SmallBody $Muted 264 108 105 26
+Fill-Round $G $Shadow 286 126 118 92 16
+Fill-Round $G $White 280 120 118 92 16
+Write-Text $G 'Chinese' $Button $Dark 300 142 90 28
+Write-Text $G 'or English' $SmallBody $Muted 300 172 85 24
+$Bmp.Save((Join-Path $OutDir 'small-promo-440x280.png'), [System.Drawing.Imaging.ImageFormat]::Png)
+$SmallTitle.Dispose(); $SmallH.Dispose(); $SmallBody.Dispose(); $G.Dispose(); $Bmp.Dispose()
 
 $Dark.Dispose(); $Muted.Dispose(); $White.Dispose(); $Panel.Dispose(); $Blue.Dispose()
 $LinePen.Dispose(); $Shadow.Dispose(); $Title.Dispose(); $H1.Dispose(); $H2.Dispose(); $Body.Dispose(); $Small.Dispose(); $Button.Dispose()
