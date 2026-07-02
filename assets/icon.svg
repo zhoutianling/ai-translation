@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="LingoTrans">
   <defs>
     <linearGradient id="bg" x1="18" y1="10" x2="110" y2="118" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#123a6f"/>
-      <stop offset="1" stop-color="#1f8a9a"/>
+      <stop stop-color="#6fe2db"/>
+      <stop offset="1" stop-color="#6fa2ff"/>
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="26" fill="url(#bg)"/>
   <path d="M31 37h66a8 8 0 0 1 8 8v38a8 8 0 0 1-8 8H73l-16 14v-14H31a8 8 0 0 1-8-8V45a8 8 0 0 1 8-8z" fill="#fff"/>
-  <path d="M43 55h17v8H48v6h10v8H43V55zm26 0h8v14h13v8H69V55z" fill="#1565d8"/>
+  <path d="M43 55h17v8H48v6h10v8H43V55zm26 0h8v14h13v8H69V55z" fill="#185dab"/>
   <path d="M39 45h50" stroke="#d8e7f2" stroke-width="5" stroke-linecap="round"/>
 </svg>
