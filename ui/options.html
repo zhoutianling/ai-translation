@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LingoTrans 设置</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="page">
+      <section class="header">
+        <img src="../assets/icon-48.png" alt="" class="logo">
+        <div>
+          <p class="eyebrow">LingoTrans</p>
+          <h1>AI 中英文本翻译设置</h1>
+          <p>填入你自己的 OpenAI 兼容接口信息。API Key 只保存在本机浏览器，不会写入扩展包。</p>
+        </div>
+      </section>
+
+      <form class="settings" id="settingsForm">
+        <label>
+          <span>API Key</span>
+          <input id="apiKey" type="password" autocomplete="off" placeholder="粘贴你的 API Key；已保存时留空不修改">
+        </label>
+
+        <label>
+          <span>Base URL</span>
+          <input id="baseUrl" type="url" required placeholder="https://ai.yun.dev/v1">
+        </label>
+
+        <div class="model-row">
+          <label>
+            <span>模型</span>
+            <select id="model" required>
+              <option value="gpt-4o-mini">gpt-4o-mini</option>
+            </select>
+          </label>
+          <button class="secondary fetch-models" id="fetchModels" type="button">获取模型</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" type="submit">保存设置</button>
+          <button class="secondary" id="saveAndTest" type="button">保存并测试</button>
+          <button class="danger" id="clearData" type="button">清除账号数据</button>
+        </div>
+      </form>
+
+      <section class="notice" id="notice" role="status" aria-live="polite">
+        正在读取设置...
+      </section>
+
+      <section class="privacy">
+        <h2>隐私与上架前检查</h2>
+        <p>你输入的文本只会发送到你配置的 Base URL 用于翻译；扩展本身不会上传、收集或转存 API Key。测试完成后点击“清除账号数据”，再打包上架。</p>
+      </section>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

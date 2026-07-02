@@ -1,0 +1,6 @@
+dist/
+*.zip
+.env
+.env.*
+*.local
+local-config.json

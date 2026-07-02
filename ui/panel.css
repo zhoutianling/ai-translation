@@ -1,0 +1,281 @@
+:root {
+  color-scheme: light;
+  --bg: #252525;
+  --card: #ffffff;
+  --card-soft: #f6f8fb;
+  --text: #162033;
+  --muted: #667085;
+  --line: #dbe2ea;
+  --primary: #1565d8;
+  --primary-dark: #0e4da8;
+  --success: #18a058;
+  --danger: #c0392b;
+  --shadow: 0 10px 28px rgba(4, 20, 42, 0.18);
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 640px;
+  min-height: 520px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.topbar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+  line-height: 1.2;
+}
+
+.brand strong {
+  font-size: 14px;
+}
+
+.brand span {
+  color: #cfd7e3;
+  font-size: 12px;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.panel-card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.translator {
+  padding: 14px;
+}
+
+.language-bar {
+  height: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.language-bar span:first-child,
+.language-bar span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swap {
+  text-align: center;
+  color: #718096;
+  font-size: 20px;
+}
+
+.translate-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.editor span {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  min-height: 230px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+textarea:focus {
+  outline: 3px solid rgba(21, 101, 216, 0.18);
+  border-color: var(--primary);
+}
+
+textarea[readonly] {
+  background: #f8fafc;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.primary,
+.secondary,
+.text-button {
+  min-height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.primary {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.primary:hover {
+  background: var(--primary-dark);
+}
+
+.secondary {
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--text);
+}
+
+.secondary:hover {
+  background: var(--card-soft);
+}
+
+.primary:disabled,
+.secondary:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.status-card {
+  padding: 14px 16px;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #a9b6c6;
+  flex: 0 0 auto;
+}
+
+.dot.good {
+  background: var(--success);
+}
+
+.dot.bad {
+  background: var(--danger);
+}
+
+.status-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.compact {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.text-button {
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  body {
+    width: 360px;
+  }
+
+  .translate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LingoTrans 翻译器</title>
+    <link rel="stylesheet" href="panel.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img src="../assets/icon-32.png" alt="" class="brand-icon">
+          <div>
+            <strong>LingoTrans</strong>
+            <span>AI 中英文本翻译</span>
+          </div>
+        </div>
+        <button class="icon-button" id="openOptions" type="button" aria-label="打开设置" title="打开设置">
+          <span aria-hidden="true">⚙</span>
+        </button>
+      </header>
+
+      <section class="panel-card translator">
+        <div class="language-bar">
+          <span id="sourceLabel">自动检测</span>
+          <span class="swap" aria-hidden="true">⇄</span>
+          <span id="targetLabel">中文 / English</span>
+        </div>
+
+        <div class="translate-grid">
+          <label class="editor">
+            <span>输入</span>
+            <textarea id="inputText" placeholder="输入英文会自动翻译为中文，输入中文会自动翻译为英文。"></textarea>
+          </label>
+
+          <label class="editor">
+            <span>译文</span>
+            <textarea id="outputText" readonly placeholder="译文会显示在这里。"></textarea>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="secondary" id="clearText" type="button">清空</button>
+          <button class="secondary" id="copyOutput" type="button">复制译文</button>
+          <button class="primary" id="translateNow" type="button">翻译</button>
+        </div>
+      </section>
+
+      <section class="panel-card status-card">
+        <div class="status-line">
+          <span id="statusDot" class="dot"></span>
+          <strong id="statusTitle">准备就绪</strong>
+        </div>
+        <p id="statusText">输入中文或英文后会自动翻译。模型和 API Key 可在设置中配置。</p>
+      </section>
+
+      <section class="panel-card compact">
+        <button class="text-button" id="clearData" type="button">清除账号数据</button>
+        <span>API Key 只保存在本机浏览器</span>
+      </section>
+    </main>
+
+    <script src="panel.js"></script>
+  </body>
+</html>
