@@ -25,12 +25,12 @@ function Fill-Round($G, $Brush, [float]$X, [float]$Y, [float]$W, [float]$H, [flo
 
 function Draw-Logo($G, [float]$X, [float]$Y, [float]$S) {
   $Rect = New-Object System.Drawing.Rectangle ([int]$X), ([int]$Y), ([int]$S), ([int]$S)
-  $Bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush $Rect, ([System.Drawing.Color]::FromArgb(223, 252, 255)), ([System.Drawing.Color]::FromArgb(239, 253, 244)), 45
-  $BlueBubble = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(74, 163, 243))
+  $Bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush $Rect, ([System.Drawing.Color]::FromArgb(238, 252, 242)), ([System.Drawing.Color]::FromArgb(247, 243, 255)), 45
+  $BlueBubble = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(34, 185, 143))
   $WhiteBrush = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(255, 255, 255))
-  $TextBlue = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(47, 148, 218))
-  $OutlinePen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(143, 208, 245)), ([Math]::Max(1.0, $S * 0.025))
-  $Shadow = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(32, 46, 133, 171))
+  $TextBlue = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(243, 111, 77))
+  $OutlinePen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 159, 125)), ([Math]::Max(1.0, $S * 0.025))
+  $Shadow = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(34, 39, 116, 93))
   Fill-Round $G $Bg $X $Y $S $S ([Math]::Max(3, $S * 0.18))
 
   Fill-Round $G $Shadow ($X + $S * 0.10) ($Y + $S * 0.18) ($S * 0.58) ($S * 0.47) ($S * 0.18)
@@ -45,8 +45,8 @@ function Draw-Logo($G, [float]$X, [float]$Y, [float]$S) {
   $Format = New-Object System.Drawing.StringFormat
   $Format.Alignment = [System.Drawing.StringAlignment]::Center
   $Format.LineAlignment = [System.Drawing.StringAlignment]::Center
-  $AFont = New-Object System.Drawing.Font 'Segoe UI', ([float]($S * 0.38)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
-  $G.DrawString('A', $AFont, $WhiteBrush, (New-Object System.Drawing.RectangleF ($X + $S * 0.12), ($Y + $S * 0.11), ($S * 0.43), ($S * 0.40)), $Format)
+  $AFont = New-Object System.Drawing.Font 'Segoe UI', ([float]($S * 0.39)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
+  $G.DrawString('A', $AFont, $WhiteBrush, (New-Object System.Drawing.RectangleF ($X + $S * 0.08), ($Y + $S * 0.14), ($S * 0.58), ($S * 0.40)), $Format)
 
   $CircleX = $X + $S * 0.42
   $CircleY = $Y + $S * 0.43
@@ -62,7 +62,7 @@ function Draw-Logo($G, [float]$X, [float]$Y, [float]$S) {
   $G.FillPolygon($WhiteBrush, $Tail2)
   $G.DrawLines($OutlinePen, $Tail2)
   $ZhFont = New-Object System.Drawing.Font 'Microsoft YaHei UI', ([float]($S * 0.25)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
-  $G.DrawString(([string][char]0x6587), $ZhFont, $TextBlue, (New-Object System.Drawing.RectangleF $CircleX, ($CircleY + $S * 0.06), $CircleS, ($CircleS * 0.72)), $Format)
+  $G.DrawString(([string][char]0x6587), $ZhFont, $TextBlue, (New-Object System.Drawing.RectangleF $CircleX, $CircleY, $CircleS, $CircleS), $Format)
 
   $Bg.Dispose(); $BlueBubble.Dispose(); $WhiteBrush.Dispose(); $TextBlue.Dispose(); $OutlinePen.Dispose(); $Shadow.Dispose()
   $Format.Dispose(); $AFont.Dispose(); $ZhFont.Dispose()
