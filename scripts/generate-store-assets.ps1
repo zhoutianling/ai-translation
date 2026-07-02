@@ -74,21 +74,28 @@ function Draw-Logo($G, [float]$X, [float]$Y, [float]$S) {
   $Format.LineAlignment = [System.Drawing.StringAlignment]::Center
   $G.DrawString('A', $AFont, $WhiteBrush, (New-Object System.Drawing.RectangleF ($X + $S * 0.08), ($Y + $S * 0.14), ($S * 0.58), ($S * 0.40)), $Format)
 
-  $CircleX = $X + $S * 0.42
-  $CircleY = $Y + $S * 0.43
-  $CircleS = $S * 0.48
-  $G.FillEllipse($Shadow, $CircleX + $S * 0.03, $CircleY + $S * 0.04, $CircleS, $CircleS)
-  $G.FillEllipse($WhiteBrush, $CircleX, $CircleY, $CircleS, $CircleS)
-  $G.DrawEllipse($OutlinePen, $CircleX, $CircleY, $CircleS, $CircleS)
+  $BubbleX = $X + $S * 0.36
+  $BubbleY = $Y + $S * 0.44
+  $BubbleW = $S * 0.57
+  $BubbleH = $S * 0.40
   $Tail2 = @(
-    [System.Drawing.PointF]::new([float]($X + $S * 0.73), [float]($Y + $S * 0.86)),
-    [System.Drawing.PointF]::new([float]($X + $S * 0.82), [float]($Y + $S * 0.91)),
-    [System.Drawing.PointF]::new([float]($X + $S * 0.78), [float]($Y + $S * 0.80))
+    [System.Drawing.PointF]::new([float]($X + $S * 0.76), [float]($Y + $S * 0.82)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.89), [float]($Y + $S * 0.91)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.83), [float]($Y + $S * 0.76))
   )
+  $Tail2Shadow = @(
+    [System.Drawing.PointF]::new([float]($X + $S * 0.79), [float]($Y + $S * 0.86)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.92), [float]($Y + $S * 0.95)),
+    [System.Drawing.PointF]::new([float]($X + $S * 0.86), [float]($Y + $S * 0.80))
+  )
+  $G.FillPolygon($Shadow, $Tail2Shadow)
+  $G.FillEllipse($Shadow, $BubbleX + $S * 0.03, $BubbleY + $S * 0.04, $BubbleW, $BubbleH)
   $G.FillPolygon($WhiteBrush, $Tail2)
   $G.DrawLines($OutlinePen, $Tail2)
+  $G.FillEllipse($WhiteBrush, $BubbleX, $BubbleY, $BubbleW, $BubbleH)
+  $G.DrawEllipse($OutlinePen, $BubbleX, $BubbleY, $BubbleW, $BubbleH)
   $ZhFont = New-Object System.Drawing.Font 'Microsoft YaHei UI', ([float]($S * 0.25)), ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
-  $G.DrawString(([string][char]0x6587), $ZhFont, $TextBlue, (New-Object System.Drawing.RectangleF $CircleX, $CircleY, $CircleS, $CircleS), $Format)
+  $G.DrawString(([string][char]0x6587), $ZhFont, $TextBlue, (New-Object System.Drawing.RectangleF $BubbleX, $BubbleY, $BubbleW, $BubbleH), $Format)
   $Bg.Dispose(); $BlueBubble.Dispose(); $WhiteBrush.Dispose(); $TextBlue.Dispose(); $OutlinePen.Dispose(); $Shadow.Dispose(); $AFont.Dispose(); $ZhFont.Dispose(); $Format.Dispose()
 }
 

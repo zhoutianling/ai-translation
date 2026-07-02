@@ -11,9 +11,11 @@
   <rect width="128" height="128" rx="22" fill="url(#bg)"/>
   <g filter="url(#shadow)">
     <path d="M18 27c0-12 10-22 22-22h32c12 0 22 10 22 22v23c0 12-10 22-22 22H49L28 89l5-19C24 67 18 59 18 50V27z" fill="#22b98f"/>
-    <circle cx="78" cy="75" r="32" fill="#fff" stroke="#ff9f7d" stroke-width="3"/>
-    <path d="M93 101l2 15-15-12" fill="#fff" stroke="#ff9f7d" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M98 103L113 116L106 97Z" fill="#fff" stroke="#ff9f7d" stroke-width="3" stroke-linejoin="round"/>
+    <ellipse cx="82" cy="80" rx="36" ry="25" fill="#fff" stroke="#ff9f7d" stroke-width="3"/>
   </g>
   <path d="M32 56L50 16h11l18 40H67l-3-8H48l-3 8H32zm19-17h10l-5-12-5 12z" fill="#fff"/>
-  <path d="M58 64h39v8H80v5h12v8H80v15h-9V85H59v-8h12v-5H58v-8zm8 16c3 5 6 9 10 11 4-3 7-6 9-11h9c-2 7-6 12-11 16 4 2 9 4 15 5l-5 8c-7-2-13-5-18-8-5 4-11 7-18 9l-5-8c6-1 11-3 16-6-4-4-7-9-10-16h8z" fill="#f36f4d"/>
+  <g transform="translate(19.3 7.8) scale(.83)">
+    <path d="M58 64h39v8H80v5h12v8H80v15h-9V85H59v-8h12v-5H58v-8zm8 16c3 5 6 9 10 11 4-3 7-6 9-11h9c-2 7-6 12-11 16 4 2 9 4 15 5l-5 8c-7-2-13-5-18-8-5 4-11 7-18 9l-5-8c6-1 11-3 16-6-4-4-7-9-10-16h8z" fill="#f36f4d"/>
+  </g>
 </svg>
